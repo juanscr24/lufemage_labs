@@ -1,73 +1,78 @@
-# React + TypeScript + Vite
+# Lufemage Labs
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a full-stack web application with a React frontend and an Express backend, built using TypeScript and Vite.
 
-Currently, two official plugins are available:
+## Project Structure
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- `src/`: Contains the React frontend source code, including pages, components, hooks, layouts, and styles.
+- `services/`: Contains the Express backend source code, including routes, controllers, and database connection.
+- `public/`: Static assets for the frontend.
+- `package.json`: Project configuration and scripts.
 
-## React Compiler
+## Prerequisites
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Node.js (v16 or higher recommended)
+- npm (comes with Node.js)
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Install all dependencies for both frontend and backend:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Running the Project
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Backend
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+The backend server is an Express app running on port 3000.
+
+To start the backend server:
+
+```bash
+npm run server
 ```
+
+To start the backend server in watch mode (auto-restart on changes):
+
+```bash
+npm run server:dev
+```
+
+### Frontend
+
+The frontend is a React app built with Vite.
+
+To start the frontend development server:
+
+```bash
+npm run dev
+```
+
+This will start the frontend on [http://localhost:5173](http://localhost:5173) by default.
+
+## Building the Project
+
+To build both backend and frontend for production:
+
+```bash
+npm run build
+```
+
+## Linting
+
+To run ESLint on the project files:
+
+```bash
+npm run lint
+```
+
+## Notes
+
+- The backend API endpoints are prefixed with `/users` as defined in the Express routes.
+- CORS is enabled on the backend to allow requests from the frontend development server.
+
+## License
+
+This project is private and not licensed for public use.
