@@ -1,0 +1,6 @@
+- [x] Create src/store/authStore.ts with Zustand persist for session state
+- [x] Update src/components/LoginForm.tsx to use store.login instead of localStorage
+- [x] Update src/layouts/PrivateLayout.tsx to use store.user
+- [x] Update src/layouts/PublicLayout.tsx to use store.user
+- [x] Add logout functionality to store
+- [x] Update src/pages/Dashboard.tsx to include logout button
