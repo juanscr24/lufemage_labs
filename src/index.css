@@ -1,1 +1,10 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-dark-input: #1A1A1A;
+}
+
+* {
+  transition: ease-in-out 0.3s;
+}

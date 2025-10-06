@@ -36,7 +36,7 @@ export const LoginForm = () => {
         user.password_user === data.password_user
     );
 
-      if (userFound) {
+    if (userFound) {
       alert('Login exitoso ✅');
       console.log('Usuario logueado:', userFound);
       reset();
@@ -51,14 +51,17 @@ export const LoginForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className='flex flex-col p-4 bg-gray-200 rounded-lg gap-10'>
-
+      className='flex flex-col p-12 bg-white shadow rounded-lg gap-10 dark:bg-[#191b21] dark:text-white'>
+      <h1 className='text-center font-bold text-3xl'>Login</h1>
       <Input
         id="input-email"
         placeholder="Correo"
+        className='dark:text-white! border-none hover:border-none'
         startAdornment={
-          <InputAdornment position="start">
-            <AccountCircle />
+          <InputAdornment position="start"
+            className='py-2 px-1 bg-[#087ea4] rounded-l-sm'
+          >
+            <AccountCircle className='text-white' />
           </InputAdornment>
         }
         {...register('email_user')}
@@ -69,14 +72,17 @@ export const LoginForm = () => {
         id="input-password"
         placeholder="Contraseña"
         startAdornment={
-          <InputAdornment position="start">
-            <PasswordIcon />
+          <InputAdornment
+            position="start"
+            className='py-2 px-1 bg-[#087ea4] rounded-l-sm'
+          >
+            <PasswordIcon className='text-white' />
           </InputAdornment>
         }
         {...register('password_user')}
       />
 
-      <Button type='submit' variant="outlined">Iniciar sesión</Button>
+      <Button className='text-white! bg-[#087ea4]!' type='submit' color='success'>Iniciar sesión</Button>
     </form>
   );
 };
