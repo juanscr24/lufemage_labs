@@ -2,6 +2,8 @@ import { useForm } from "react-hook-form"
 import { useProducts } from "../hooks/useFetcProducts";
 import Input from "@mui/material/Input";
 import Button from "@mui/material/Button";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { productSchema } from "../validations/productSchema";
 
 interface productData {
     product: string;
@@ -11,7 +13,9 @@ interface productData {
 
 export const ProductForm = () => {
     const { createProduct } = useProducts();
-    const { register, reset, handleSubmit } = useForm<productData>()
+    const { register, reset, handleSubmit, formState: { errors } } = useForm({
+        resolver: zodResolver(productSchema)
+    })
 
     const onSubmit = async (data: productData) => {
         if (data.product.trim() === '') {
@@ -33,25 +37,34 @@ export const ProductForm = () => {
             onSubmit={handleSubmit(onSubmit)}
             className='flex p-4 bg-gray-200 rounded-lg gap-10 justify-around'
         >
-            <Input
-                id="product"
-                placeholder="Producto"
-                {...register('product')}
-            />
+            <div className="flex flex-col">
+                <Input
+                    id="product"
+                    placeholder="Producto"
+                    {...register('product')}
+                />
+                {errors.product?.message && <span className="text-red-500 text-sm">{errors.product?.message}</span>}
+            </div>
 
-            <Input
-                id="price"
-                type="number"
-                placeholder="Precio"
-                {...register('price')}
-            />
+            <div className="flex flex-col">
+                <Input
+                    id="price"
+                    type="number"
+                    placeholder="Precio"
+                    {...register('price')}
+                />
+                {errors.price?.message && <span className="text-red-500 text-sm">{errors.price?.message}</span>}
+            </div>
 
-            <Input
-                id="quantity"
-                type="number"
-                placeholder="Cantidad"
-                {...register('quantity')}
-            />
+            <div className="flex flex-col">
+                <Input
+                    id="quantity"
+                    type="number"
+                    placeholder="Cantidad"
+                    {...register('quantity')}
+                />
+                {errors.quantity?.message && <span className="text-red-500 text-sm">{errors.quantity?.message}</span>}
+            </div>
 
             <Button type="submit" variant="outlined">
                 Registrar producto
