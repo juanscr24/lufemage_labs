@@ -7,7 +7,6 @@ import Button from '@mui/material/Button';
 import { useUsers } from '../hooks/useFetchUser';
 
 type RegisterData = {
-
     email_user: string;
     password_user: string;
 }
