@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import db from "../db";
 
-export const getProducts = (req: Request, res: Response): void => {
+export const getProducts = (_: Request, res: Response): void => {
     db.query("SELECT * FROM products", (err, results) => {
         if (err) {
-            res.status(500).json(err);
+            res.status(400).json(err);
             return;
         }
         res.json(results);
@@ -18,7 +18,7 @@ export const createProduct = (req: Request, res: Response): void => {
         [product, price, quantity],
         (err, result) => {
             if (err) {
-                res.status(500).json(err);
+                res.status(400).json(err);
                 return;
             }
             res.json({
@@ -39,7 +39,7 @@ export const updateProduct = (req: Request, res: Response): void => {
         [product, price, quantity, id],
         (err) => {
             if (err) {
-                res.status(500).json(err);
+                res.status(400).json(err);
                 return;
             }
             res.json({

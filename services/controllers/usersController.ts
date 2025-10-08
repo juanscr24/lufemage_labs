@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import db from "../db";
 
-export const getUsers = (req: Request, res: Response): void => {
+export const getUsers = (_: Request, res: Response): void => {
     db.query("SELECT * FROM users", (err, results) => {
         if (err) {
             res.status(500).json(err);

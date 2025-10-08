@@ -3,7 +3,6 @@ import cors from "cors";
 import usersRoutes from "./routes/users";
 import productsRoutes from "./routes/products";
 
-
 const app = express();
 const PORT = 3000;
 
