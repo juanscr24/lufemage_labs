@@ -1,29 +1,22 @@
 import { useForm } from 'react-hook-form';
 import { useUsers } from '../hooks/useFetchUser';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { InputLabel } from './InputLabel';
 import { ButtonComponent } from './ButtonComponent';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { userSchemaCreate } from '../validations/userSchema';
+import { z } from 'zod';
 
-type RegisterData = {
-    email_user: string;
-    password_user: string;
-}
+type RegisterData = z.infer<typeof userSchemaCreate>;
 
 export const RegisterForm = () => {
+    const navigate = useNavigate()
     const { users, createUser } = useUsers();
-    const { register, reset, handleSubmit } = useForm<RegisterData>();
+    const { register, reset, handleSubmit, formState: { errors } } = useForm({
+        resolver: zodResolver(userSchemaCreate)
+    });
 
     const onSubmit = async (data: RegisterData) => {
-        if (data.email_user.trim() === '') {
-            alert('El correo no puede estar vacío');
-            return;
-        }
-
-        if (data.password_user.trim() === '') {
-            alert('La contraseña no puede estar vacía');
-            return;
-        }
-
         const userExists = users.find(
             (user) => user.email_user === data.email_user
         );
@@ -32,11 +25,12 @@ export const RegisterForm = () => {
             alert('Este correo ya está registrado');
             return;
         }
-
         try {
             await createUser(data);
             alert('Usuario registrado exitosamente');
             reset();
+            navigate('../login')
+
         } catch (err) {
             alert('Error al registrar usuario');
             console.error(err);
@@ -57,14 +51,15 @@ export const RegisterForm = () => {
                     label="Correo electrónico"
                     placeholder="Correo electrónico"
                     register={{ ...register('email_user') }}
+                    errors={errors.email_user?.message && <span className='text-red-400'>{errors.email_user?.message}</span>}
                 />
-
                 <InputLabel
                     type='password'
                     id="register-password"
                     label="Contraseña"
                     placeholder="*********"
                     register={{ ...register('password_user') }}
+                    errors={errors.password_user?.message && <span className='text-red-400'>{errors.password_user?.message}</span>}
                 />
 
                 <InputLabel
@@ -72,8 +67,10 @@ export const RegisterForm = () => {
                     id="password-again"
                     label="Confirmar contraseña"
                     placeholder="*********"
-                    register={{ ...register('password_user') }}
+                    register={{ ...register('confirmPassword') }}
+                    errors={errors.confirmPassword?.message && <span className='text-red-400'>{errors.confirmPassword?.message}</span>}
                 />
+
                 <h3 className='text-[#4c9cfd] text-end text-sm cursor-pointer'>¿Olvidaste la contraseña?</h3>
                 <ButtonComponent text='Registrarse' />
             </form>

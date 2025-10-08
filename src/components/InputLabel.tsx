@@ -1,12 +1,13 @@
 interface IInputLabel {
     id: string;
     placeholder: string;
-    label: string;
-    register: any;
+    label?: string;
+    register?: any;
+    errors?: any;
     type: 'text' | 'number' | 'password'
 }
 
-export const InputLabel = ({ id, placeholder, label, register, type }: IInputLabel) => {
+export const InputLabel = ({ id, placeholder, label, register, type, errors }: IInputLabel) => {
     return (
         <div className="flex flex-col w-full gap-2">
             <label htmlFor={id}>{label}</label>
@@ -19,6 +20,7 @@ export const InputLabel = ({ id, placeholder, label, register, type }: IInputLab
                 placeholder={placeholder}
                 {...register}
             />
+            {errors}
         </div>
     )
 }

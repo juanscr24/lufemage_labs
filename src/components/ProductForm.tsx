@@ -4,12 +4,9 @@ import Input from "@mui/material/Input";
 import Button from "@mui/material/Button";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { productSchema } from "../validations/productSchema";
+import type z from "zod";
 
-interface productData {
-    product: string;
-    price: number;
-    quantity: number;
-}
+type productData = z.infer<typeof productSchema>;
 
 export const ProductForm = () => {
     const { createProduct } = useProducts();
