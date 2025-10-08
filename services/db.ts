@@ -3,7 +3,7 @@ import mysql from "mysql2";
 const connection = mysql.createConnection({
   host: "bqmszltiyyyc0xndbmuq-mysql.services.clever-cloud.com",
   user: "u9pz0lwuixdxlzvo",
-  password: "zaqEi1QheIIFMUSHjEnB",
+  password: "Dg6sCxiuQLqTKtDPGNju",
   database: "bqmszltiyyyc0xndbmuq",
   port: 3306,
 });

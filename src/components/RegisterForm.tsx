@@ -4,16 +4,16 @@ import { Link, useNavigate } from 'react-router-dom';
 import { InputLabel } from './InputLabel';
 import { ButtonComponent } from './ButtonComponent';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { userSchemaCreate } from '../validations/userSchema';
+import { userSchemaRegister } from '../validations/userSchema';
 import { z } from 'zod';
 
-type RegisterData = z.infer<typeof userSchemaCreate>;
+type RegisterData = z.infer<typeof userSchemaRegister>;
 
 export const RegisterForm = () => {
     const navigate = useNavigate()
     const { users, createUser } = useUsers();
     const { register, reset, handleSubmit, formState: { errors } } = useForm({
-        resolver: zodResolver(userSchemaCreate)
+        resolver: zodResolver(userSchemaRegister)
     });
 
     const onSubmit = async (data: RegisterData) => {
@@ -72,7 +72,7 @@ export const RegisterForm = () => {
                 />
 
                 <h3 className='text-[#4c9cfd] text-end text-sm cursor-pointer'>¿Olvidaste la contraseña?</h3>
-                <ButtonComponent text='Registrarse' />
+                <ButtonComponent variant='primary' text='Registrarse' type='submit'/>
             </form>
         </div>
     );

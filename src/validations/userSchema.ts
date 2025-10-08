@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const userSchemaCreate = z.object({
+export const userSchemaRegister = z.object({
     email_user: z
         .string()
         .trim()
@@ -23,3 +23,16 @@ export const userSchemaCreate = z.object({
         path: ['confirmPassword'],
         message: "Las contraseñas no coinciden"
     });
+
+export const userSchemaLogin = z.object({
+    email_user: z
+        .string()
+        .trim()
+        .nonempty({ message: 'El email no puede estar vacío' })
+        .email({ message: 'Ingresa un email valido' }),
+
+    password_user: z
+        .string()
+        .trim()
+        .nonempty({ message: 'La contraseña no puede estar vacía' })
+})

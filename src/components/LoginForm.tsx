@@ -1,29 +1,25 @@
+import type z from 'zod';
 import { useForm } from 'react-hook-form';
 import { useUsers } from '../hooks/useFetchUser';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
 import { InputLabel } from './InputLabel';
 import { ButtonComponent } from './ButtonComponent';
+import { userSchemaLogin } from '../validations/userSchema';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-interface LoginData {
-  email_user: string;
-  password_user: string;
-}
+type LoginData = z.infer<typeof userSchemaLogin>;
 
 export const LoginForm = () => {
   const navigate = useNavigate();
   const { users } = useUsers();
-  const { register, reset, handleSubmit } = useForm<LoginData>();
+  const { register, reset, handleSubmit, formState: { errors } } = useForm<LoginData>(
+    { resolver: zodResolver(userSchemaLogin) }
+  );
   const login = useAuthStore((state) => state.login);
 
   const onSubmit = (data: LoginData) => {
-    if (data.email_user.trim() === '') {
-      alert('El email no puede estar vacío');
-      return;
-    }
-
-    if (data.password_user.trim() === '') {
-      alert('La contraseña no puede estar vacía');
+    if (data.email_user.trim() === '' && data.password_user.trim() === '') {
       return;
     }
 
@@ -58,6 +54,7 @@ export const LoginForm = () => {
           placeholder='Correo electronico'
           label='Correo electronico'
           register={{ ...register('email_user') }}
+          errors={errors.email_user?.message && <span className='text-red-400'>{errors.email_user?.message}</span>}
         />
 
         <InputLabel
@@ -66,10 +63,11 @@ export const LoginForm = () => {
           placeholder='*********'
           label='Contraseña '
           register={{ ...register('password_user') }}
+          errors={errors.password_user?.message && <span className='text-red-400'>{errors.password_user?.message}</span>}
         />
 
         <h3 className='text-[#4c9cfd] text-end text-sm cursor-pointer'>¿Olvidaste la contraseña?</h3>
-        <ButtonComponent text='Iniciar Sesion' />
+        <ButtonComponent variant='primary' text='Iniciar Sesion' type='submit' />
       </form>
     </div>
   );

@@ -9,8 +9,7 @@ import { PrivateLayout } from "../layouts/PrivateLayout"
 export const AppRouter = () => {
 
     const privateRoute = [
-        { path: '/', element: <Dashboard /> },
-
+        { path: '/', element: <Dashboard /> }
     ]
 
     const publicRoute = [

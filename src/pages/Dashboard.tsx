@@ -1,14 +1,13 @@
-import { Navbar } from "../components/Navbar"
-import { ProductForm } from "../components/ProductForm"
+
+import { ProductMangament } from "../components/ProductMangament"
 import ProductTable from "../components/ProductTable"
 
 const Dashboard = () => {
 
-
     return (
-        <div className="p-4">
-            <Navbar />
-            <ProductForm />
+        <div className="bg-[#f6f7f8]">
+            {/* <ProductForm /> */}
+            <ProductMangament />
             <ProductTable />
         </div>
     )
