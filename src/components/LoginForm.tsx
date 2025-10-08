@@ -1,12 +1,9 @@
-import Input from '@mui/material/Input';
-import InputAdornment from '@mui/material/InputAdornment';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import PasswordIcon from '@mui/icons-material/Password';
 import { useForm } from 'react-hook-form';
-import Button from '@mui/material/Button';
 import { useUsers } from '../hooks/useFetchUser';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
+import { InputLabel } from './InputLabel';
+import { ButtonComponent } from './ButtonComponent';
 
 interface LoginData {
   email_user: string;
@@ -49,40 +46,31 @@ export const LoginForm = () => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className='flex flex-col p-12 bg-white shadow rounded-lg gap-10 dark:bg-[#191b21] dark:text-white'>
-      <h1 className='text-center font-bold text-3xl'>Login</h1>
-      <Input
-        id="input-email"
-        placeholder="Correo"
-        className='dark:text-white! border-none hover:border-none'
-        startAdornment={
-          <InputAdornment position="start"
-            className='py-2 px-1 bg-[#087ea4] rounded-l-sm'
-          >
-            <AccountCircle className='text-white' />
-          </InputAdornment>
-        }
-        {...register('email_user')}
-      />
+    <div className='bg-white dark:bg-[#1e2939] p-10 shadow rounded-lg flex flex-col justify-center items-center'>
+      <h1 className='text-4xl font-extrabold text-gray-900 dark:text-white mb-3'>Iniciar sesion</h1>
+      <p className='mb-8 dark:text-[#99a1af]'>¿No tienes cuenta aun? <Link className='text-[#4c9cfd]' to={'../register'}>Registrate</Link></p>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className='flex flex-col w-[350px] gap-5 dark:text-[#99a1af]'>
+        <InputLabel
+          type='text'
+          id='input-email'
+          placeholder='Correo electronico'
+          label='Correo electronico'
+          register={{ ...register('email_user') }}
+        />
 
-      <Input
-        type='password'
-        id="input-password"
-        placeholder="Contraseña"
-        startAdornment={
-          <InputAdornment
-            position="start"
-            className='py-2 px-1 bg-[#087ea4] rounded-l-sm'
-          >
-            <PasswordIcon className='text-white' />
-          </InputAdornment>
-        }
-        {...register('password_user')}
-      />
+        <InputLabel
+          type='password'
+          id='input-password'
+          placeholder='*********'
+          label='Contraseña '
+          register={{ ...register('password_user') }}
+        />
 
-      <Button className='text-white! bg-[#087ea4]!' type='submit' color='success'>Iniciar sesión</Button>
-    </form>
+        <h3 className='text-[#4c9cfd] text-end text-sm cursor-pointer'>¿Olvidaste la contraseña?</h3>
+        <ButtonComponent text='Iniciar Sesion' />
+      </form>
+    </div>
   );
 };

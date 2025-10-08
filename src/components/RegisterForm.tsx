@@ -52,6 +52,7 @@ export const RegisterForm = () => {
                 className='flex flex-col w-[350px] gap-5 dark:text-[#99a1af]'
             >
                 <InputLabel
+                    type='text'
                     id="register-email"
                     label="Correo electrónico"
                     placeholder="Correo electrónico"
@@ -59,6 +60,7 @@ export const RegisterForm = () => {
                 />
 
                 <InputLabel
+                    type='password'
                     id="register-password"
                     label="Contraseña"
                     placeholder="*********"
@@ -66,6 +68,7 @@ export const RegisterForm = () => {
                 />
 
                 <InputLabel
+                    type='password'
                     id="password-again"
                     label="Confirmar contraseña"
                     placeholder="*********"

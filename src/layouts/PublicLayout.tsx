@@ -16,8 +16,8 @@ export const PublicLayout = () => {
         >
             <button
                 className="
-                absolute right-5 top-5 cursor-pointer rounded-lg bg-white hover:bg-white/60 p-2
-                dark:text-white dark:bg-[#1e2939] dark:hover:bg-[#1e2939]/60"
+                absolute right-5 top-5 cursor-pointer rounded-lg bg-white hover:bg-white/60 p-2 shadow
+                dark:text-white dark:bg-[#1e2939] dark:hover:bg-[#1e2939]/60 dark:shadow-black/50"
                 onClick={toggleTheme}>
                 {theme == 'light' ? <Brightness4 /> : <Brightness7 />}
             </button>
