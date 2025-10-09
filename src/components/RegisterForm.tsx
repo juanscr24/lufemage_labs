@@ -72,7 +72,7 @@ export const RegisterForm = () => {
                 />
 
                 <h3 className='text-[#4c9cfd] text-end text-sm cursor-pointer'>¿Olvidaste la contraseña?</h3>
-                <ButtonComponent variant='primary' text='Registrarse' type='submit'/>
+                <ButtonComponent variant='primary' text='Registrarse' type='submit' />
             </form>
         </div>
     );

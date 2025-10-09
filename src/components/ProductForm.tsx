@@ -28,6 +28,7 @@ export const ProductForm = ({ onClick }: IProductForm) => {
             await createProduct(data);
             alert('Producto registrado exitosamente');
             reset();
+            onClick();
         } catch (err) {
             alert('Error al registrar producto');
             console.error(err);
@@ -58,7 +59,7 @@ export const ProductForm = ({ onClick }: IProductForm) => {
                             type="text"
                             label="Nombre del producto"
                             placeholder="Producto"
-                            {...register('product')}
+                            register={{ ...register('product') }}
                             errors={errors.product?.message && (
                                 <span className="text-red-500 text-sm">{errors.product?.message}</span>
                             )}
@@ -70,7 +71,7 @@ export const ProductForm = ({ onClick }: IProductForm) => {
                             type="number"
                             label="Precio del producto"
                             placeholder="Precio"
-                            {...register('price')}
+                            register={{ ...register('price') }}
                             errors={errors.price?.message && (
                                 <span className="text-red-500 text-sm">{errors.price?.message}</span>
                             )}
@@ -82,7 +83,7 @@ export const ProductForm = ({ onClick }: IProductForm) => {
                             type="number"
                             label="Cantidad del producto"
                             placeholder="Cantidad"
-                            {...register('quantity')}
+                            register={{ ...register('quantity') }}
                             errors={errors.quantity?.message && (
                                 <span className="text-red-500 text-sm">{errors.quantity?.message}</span>
                             )}

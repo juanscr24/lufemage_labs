@@ -15,7 +15,7 @@ export const Navbar = () => {
         navigate('/login');
     };
     return (
-        <nav className='flex px-8 py-4 justify-between items-center shadow mb-1 text-[#6b7280]'>
+        <nav className='flex px-12 py-4 justify-between items-center shadow mb-1 text-[#6b7280]'>
             <div className='flex items-center gap-4 text-black'>
                 <QrCodeScannerIcon />
                 <h1 className='text-2xl font-bold'>Lufemage Labs</h1>
