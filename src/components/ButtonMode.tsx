@@ -11,7 +11,7 @@ const button = tv({
     variants: {
         variant: {
             login: "absolute right-5 top-5 rounded-lg bg-white hover:bg-white/60 p-2 shadow dark:text-white dark:bg-[#1e2939] dark:hover:bg-[#1e2939]/60 dark:shadow-black/50",
-            dashboard: "bg-none text-[#6b7280] hover:text-[#1e84ec]"
+            dashboard: "bg-none text-[#6b7280] hover:text-[#1e84ec] dark:text-white"
         },
     },
     defaultVariants: {

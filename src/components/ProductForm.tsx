@@ -36,12 +36,12 @@ export const ProductForm = ({ onClick }: IProductForm) => {
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center">
+        <div className="fixed inset-0 z-50 flex items-center justify-center dark:text-white">
             <div
                 className="absolute inset-0 bg-black/50 backdrop-blur-xs"
                 onClick={onClick}
             />
-            <div className="relative w-1/3 p-6 bg-gray-200 rounded-lg shadow-lg">
+            <div className="relative w-1/3 p-6 bg-gray-200 rounded-lg shadow-lg dark:bg-[#101828]">
                 <button
                     onClick={onClick}
                     className="absolute right-3 top-3 text-gray-600 hover:text-gray-800"
